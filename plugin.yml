@@ -1,0 +1,19 @@
+---
+src-namespace-prefix: CJMustard1452\PocketCord
+website: https://github.com/CJMustard1452
+main: CJMustard1452\PocketCord\Main
+author: CJMustard1452
+name: PocketCord
+version: 1.2.1
+api: 4.8.1
+
+commands:
+  pocketcord:
+    permission: pocketcord.admin
+    description: 'PocketCord chat logging setup.'
+
+permissions:
+  pocketcord.admin:
+    default: op
+    description: 'PocketCord setup permission node.'
+...
