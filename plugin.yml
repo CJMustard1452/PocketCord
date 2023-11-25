@@ -1,0 +1,11 @@
+---
+name: PocketCord
+version: 1.0.1
+main: CJMustard1452\PocketCord\Loader
+api: 5.0.0
+src-namespace-prefix: CJMustard1452\PocketCord
+
+permissions:
+  pocketcord.cmd:
+    default: op
+...

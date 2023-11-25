@@ -1,0 +1,20 @@
+--- 
+database-name: 'webhooks.db'
+webhook-send-rate: 5
+
+# {time}
+start-format: "{time} => The server has started."
+stop-format: "{time} => The server has stopped."
+
+# {time} {player_name}
+join-format: "{time} => {player_name} has joined the server."
+leave-format: "{time} => {player_name} has left the server."
+death-format: "{time} => {player_name} has died."
+
+# {time} {player_name} {messsage}
+chat-format: "{time} => {player_name} just said {message}."
+command-format: "{time} => {player_name} just ran {message}."
+
+# {time} {killer_name} {dead_name}
+kill-format: "{time} => {killer_name} killed {dead_name}."
+...
