@@ -48,7 +48,7 @@ class ManageWebhookForm extends BaseForm {
 
         $form->addInput('Required', 'Webhook Name', null, 'name');
         $form->addToggle('Edit Webhook URL', false, "url");
-        $form->addToggle('Edit Webhook URL', false, "avatar_url");
+        $form->addToggle('Edit Webhook Avatar', false, "avatar_url");
 
         $form->addLabel("§7(§cNOTICE§7) §8Toggle what you want the server to flag.", 'label');
 

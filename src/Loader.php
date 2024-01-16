@@ -21,7 +21,7 @@ class Loader extends PluginBase {
         self::$instance = $this;
 
         if(!file_exists($this->getDataFolder() . 'config.yml')) {
-            $configData = file_get_contents($this->getResourcePath('./config.yml'));
+            $configData = $this->getResource('./config.yml');
             file_put_contents($this->getDataFolder() . 'config.yml', $configData);
         }
 
@@ -33,7 +33,7 @@ class Loader extends PluginBase {
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getScheduler()->scheduleRepeatingTask(new WebhookHeartbeat(), 20);
 
-        $this->getServer()->getCommandMap()->register('pocketcord', new PocketCordCommand());
+        $this->getServer()->getCommandMap()->register('pocketcord', new PocketCordCommand($this));
 
         self::onStart();
     }

@@ -4,6 +4,7 @@ namespace CJMustard1452\PocketCord\Listener;
 
 use CJMustard1452\PocketCord\Webhook\WebhookAPI;
 use pocketmine\player\Player;
+use SQLite3;
 
 class SetupListener {
 
@@ -35,6 +36,8 @@ class SetupListener {
 
     public static function updateSettings(Player $player, String $setting) {
         $data = self::$playerArray[$player->getName()];
+
+        echo(SQLite3::escapeString($setting));
 
         if($data['type'] == self::CREATE) {
             if(!$data['url']) {

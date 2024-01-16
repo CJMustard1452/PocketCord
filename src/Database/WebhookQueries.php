@@ -33,16 +33,19 @@ class WebhookQueries {
     }
 
     public static function createWebhook(String $name, String $WebhookURL, ?String $imageURL = null, ?Array $tasks = null): bool {
-        $chats = intval(in_array(WebhookAPI::CHAT, $tasks));
-        $commands = intval(in_array(WebhookAPI::COMMAND, $tasks));
-        $joins = intval(in_array(WebhookAPI::JOIN, $tasks));
-        $leaves = intval(in_array(WebhookAPI::LEAVE, $tasks));
+        $name = SQLite3::escapeString($name);
+        $WebhookURL = SQLite3::escapeString($WebhookURL);
 
-        $deaths = intval(in_array(WebhookAPI::DEATH, $tasks));
-        $kills = intval(in_array(WebhookAPI::KILL, $tasks));
+        $chats = SQLite3::escapeString(intval(in_array(WebhookAPI::CHAT, $tasks)));
+        $commands = SQLite3::escapeString(intval(in_array(WebhookAPI::COMMAND, $tasks)));
+        $joins = SQLite3::escapeString(intval(in_array(WebhookAPI::JOIN, $tasks)));
+        $leaves = SQLite3::escapeString(intval(in_array(WebhookAPI::LEAVE, $tasks)));
 
-        $stops = intval(in_array(WebhookAPI::START, $tasks));
-        $starts = intval(in_array(WebhookAPI::STOP, $tasks));
+        $deaths = SQLite3::escapeString(intval(in_array(WebhookAPI::DEATH, $tasks)));
+        $kills = SQLite3::escapeString(intval(in_array(WebhookAPI::KILL, $tasks)));
+
+        $stops = SQLite3::escapeString(intval(in_array(WebhookAPI::START, $tasks)));
+        $starts = SQLite3::escapeString(intval(in_array(WebhookAPI::STOP, $tasks)));
 
         $updateWebhookData = 
         <<<EOF
@@ -77,6 +80,8 @@ class WebhookQueries {
     }
 
     public static function deleteWebhook(String $name): bool {
+        $name = SQLite3::escapeString($name);
+
         $updateWebhookData = 
         <<<EOF
            delete from webhooks where webhookName="$name";
@@ -96,12 +101,15 @@ class WebhookQueries {
         $webhookArray = [];
         while ($webhookData = $webhookQuery->fetchArray(SQLITE3_ASSOC)) {
             $webhookArray[] = $webhookData;
-          }
+        }
 
         return $webhookArray;    
     }
 
     public static function updateWebhookName(String $oldName, String $newName): bool {
+        $oldName = SQLite3::escapeString($oldName);
+        $newName = SQLite3::escapeString($newName);
+
         $updateWebhookData = 
         <<<EOF
            update webhooks set webhookName="$newName" where webhookName="$oldName";
@@ -111,6 +119,9 @@ class WebhookQueries {
     }
 
     public static function updateWebhookURL(String $name, String $webhookURL): bool {
+        $name = SQLite3::escapeString($name);
+        $webhookURL = SQLite3::escapeString($webhookURL);
+
         $updateWebhookData = 
         <<<EOF
            update webhooks set webhookURL="$webhookURL" where webhookName="$name";
@@ -120,6 +131,9 @@ class WebhookQueries {
     }
 
     public static function updateWebhookImageURL(String $name, String $imageURL): bool {
+        $name = SQLite3::escapeString($name);
+        $imageURL = SQLite3::escapeString($imageURL);
+
         $updateWebhookData = 
         <<<EOF
            update webhooks set imageURL="$imageURL" where webhookName="$name";
@@ -129,16 +143,18 @@ class WebhookQueries {
     }
 
     public static function updateWebhookTasks(String $name, Array $tasks): bool {
-        $chats = intval(in_array(WebhookAPI::CHAT, $tasks));
-        $commands = intval(in_array(WebhookAPI::COMMAND, $tasks));
-        $joins = intval(in_array(WebhookAPI::JOIN, $tasks));
-        $leaves = intval(in_array(WebhookAPI::LEAVE, $tasks));
+        $name = SQLite3::escapeString($name);
 
-        $deaths = intval(in_array(WebhookAPI::DEATH, $tasks));
-        $kills = intval(in_array(WebhookAPI::KILL, $tasks));
+        $chats = SQLite3::escapeString(intval(in_array(WebhookAPI::CHAT, $tasks)));
+        $commands = SQLite3::escapeString(intval(in_array(WebhookAPI::COMMAND, $tasks)));
+        $joins = SQLite3::escapeString(intval(in_array(WebhookAPI::JOIN, $tasks)));
+        $leaves = SQLite3::escapeString(intval(in_array(WebhookAPI::LEAVE, $tasks)));
 
-        $stops = intval(in_array(WebhookAPI::START, $tasks));
-        $starts = intval(in_array(WebhookAPI::STOP, $tasks));
+        $deaths = SQLite3::escapeString(intval(in_array(WebhookAPI::DEATH, $tasks)));
+        $kills = SQLite3::escapeString(intval(in_array(WebhookAPI::KILL, $tasks)));
+
+        $stops = SQLite3::escapeString(intval(in_array(WebhookAPI::START, $tasks)));
+        $starts = SQLite3::escapeString(intval(in_array(WebhookAPI::STOP, $tasks)));
 
         $updateWebhookData = 
         <<<EOF
