@@ -18,12 +18,12 @@ class SetupListener {
         self::$playerArray[$player->getName()]["type"] = $type;
 
         if(!$data['url']) {
-            $player->sendMessage("§8(§3Pocket§tCord§8)§7 Please enter a Webhook-URL into the chat.");
+            $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Please enter a Webhook-URL into the chat.");
             return; 
         }
 
         if(!$data['avatar_url']) {
-            $player->sendMessage("§8(§3Pocket§tCord§8)§7 Please enter an Avatar-URL into the chat.");
+            $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Please enter an Avatar-URL into the chat.");
             return;
         }
     }
@@ -43,15 +43,15 @@ class SetupListener {
             if(!$data['url']) {
                 $data['url'] = true;
                 WebhookAPI::createWebhook($data['name'], $setting, '', $data['tasks']);
-                if(!$data['avatar_url']) return $player->sendMessage("§8(§3Pocket§tCord§8)§7 Set Webhook URL, please enter an Avatar-URL into the chat.");
+                if(!$data['avatar_url']) return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Set Webhook URL, please enter an Avatar-URL into the chat.");
                 unset(self::$playerArray[$player->getName()]);
-                return $player->sendMessage("§8(§3Pocket§tCord§8)§7 Set Webhook-URL.");
+                return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Set Webhook-URL.");
             }
 
             if(!$data['avatar_url']) {
                 WebhookAPI::updateWebhookImageURL($data['name'], $setting);
                 unset(self::$playerArray[$player->getName()]);
-                return $player->sendMessage("§8(§3Pocket§tCord§8)§7 Updated Avatar-URL.");
+                return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Updated Avatar-URL.");
             }
         }
 
@@ -59,16 +59,16 @@ class SetupListener {
             if(!$data['url']) {
                 $data['url'] = true;
                 WebhookAPI::updateWebhookURL($data['name'], $setting);
-                if(!$data['avatar_url']) return $player->sendMessage("§8(§3Pocket§tCord§8)§7 Set Webhook URL, please enter an Avatar-URL");
+                if(!$data['avatar_url']) return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Set Webhook URL, please enter an Avatar-URL");
                 unset(self::$playerArray[$player->getName()]);
-                return $player->sendMessage("§8(§3Pocket§tCord§8)§7 Set Webhook-URL.");
+                return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Set Webhook-URL.");
             }
             
             if(!$data['avatar_url']) {
                 $data['avatar_url'] = true;
                 WebhookAPI::updateWebhookImageURL($data['name'], $setting);
                 unset(self::$playerArray[$player->getName()]);
-                return $player->sendMessage("§8(§3Pocket§tCord§8)§7 Updated Avatar-URL.");
+                return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 Updated Avatar-URL.");
             } 
         }
     }

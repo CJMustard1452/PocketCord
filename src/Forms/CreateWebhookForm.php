@@ -12,8 +12,8 @@ class CreateWebhookForm extends BaseForm {
     public function sendForm(): void {
         $form = new CustomForm(function($player, $data) { 
             if(!isset($data)) return;
-            if(!isset($data['name']) || $data['name'] == "" || ctype_space($data['name'])) return $player->sendMessage("§8(§3Pocket§tCord§8)§7 You need to enter a name for your webhook.");
-            if(WebhookAPI::getWebhook($data['name'])) return $player->sendMessage("§8(§3Pocket§tCord§8)§7 There is already a webhook with this name.");
+            if(!isset($data['name']) || $data['name'] == "" || ctype_space($data['name'])) return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 You need to enter a name for your webhook.");
+            if(WebhookAPI::getWebhook($data['name'])) return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 There is already a webhook with this name.");
             
             $tasks = [];
             foreach($data as $taskname => $task) {
@@ -33,7 +33,7 @@ class CreateWebhookForm extends BaseForm {
             new SetupListener($player, SetupListener::CREATE, $webhookData);
         });
 
-        $form->setTitle('§8(§3Pocket§tCord§8)');
+        $form->setTitle('§cPocket§8Cord §rWebhook Management');
 
         $form->addInput('Required', 'Webhook Name', null, 'name');
         $form->addToggle('Avatar URL', false, 'avatar_url');

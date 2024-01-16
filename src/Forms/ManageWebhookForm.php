@@ -14,7 +14,7 @@ class ManageWebhookForm extends BaseForm {
             if(!isset($data)) return;
 
             if(isset($data['name']) && $data['name']) {
-                if(WebhookAPI::getWebhook($data['name'])) return $player->sendMessage("§8(§3Pocket§tCord§8)§7 There is already a webhook with this name.");
+                if(WebhookAPI::getWebhook($data['name'])) return $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 There is already a webhook with this name.");
                 if(!ctype_space($data['name'])) WebhookAPI::updateWebhookName($this->data['name'], $data['name']);
                 $this->data['name'] = $data['name'];
             }
@@ -39,7 +39,7 @@ class ManageWebhookForm extends BaseForm {
                 ];
 
                 new SetupListener($player, SetupListener::EDIT, $webhookData);
-            } else $player->sendMessage("§8(§3Pocket§tCord§8)§7 This webhook has been updated.");
+            } else $player->sendMessage("§8(§3§cPocket§8Cord §7Webhook Management§8)§7 This webhook has been updated.");
         });
 
         if(!$webhookObject = WebhookAPI::getWebhook($this->data['name'])) return;

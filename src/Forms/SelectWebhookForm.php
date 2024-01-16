@@ -8,14 +8,18 @@ use CJMustard1452\PocketCord\Webhook\WebhookAPI;
 
 class SelectWebhookForm extends BaseForm {
 
+    public const MANAGE = 0;
+    public const REMOVE = 1;
+
     public function sendForm(): void {
         $form = new SimpleForm(function($player, $data) { 
             if(!isset($data)) return;
 
-            new ManageWebhookForm($player, ['name' => $data]);
+            if($this->data["Type"] == self::MANAGE) new ManageWebhookForm($player, ['name' => $data]);
+            if($this->data["Type"] == self::REMOVE) new RemoveWebhookForm($player, ['name' => $data]);
         });
 
-        $form->setTitle('§8(§3Pocket§tCord§8)');
+        $form->setTitle('§cPocket§8Cord §rWebhook Management');
         
         if(empty(WebhookAPI::$webhooks)) {
             $form->setContent('§7(§cNOTICE§7) §8There are no active Web-Hooks...');
