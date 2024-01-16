@@ -3,13 +3,19 @@
 namespace CJMustard1452\PocketCord\Command;
 
 use CJMustard1452\PocketCord\Forms\PocketCordForm;
+use CJMustard1452\PocketCord\Loader;
 use pocketmine\command\Command;
 use pocketmine\player\Player;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\PluginOwned;
 
-class PocketCordCommand extends Command {
+class PocketCordCommand extends Command implements PluginOwned {
 
-    public function __construct() {
+    private Loader $plugin;
+
+    public function __construct(Loader $loader) {
+        $this->plugin = $loader;
+
         parent::__construct("pocketcord", "PocketCord panel access");
         $this->setPermission('pocketcord.cmd');
     }
@@ -22,4 +28,8 @@ class PocketCordCommand extends Command {
 
         new PocketCordForm($sender);
     }
+
+    public function getOwningPlugin(): Loader {
+		return $this->plugin;
+	}
 }
