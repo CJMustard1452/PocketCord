@@ -37,8 +37,6 @@ class SetupListener {
     public static function updateSettings(Player $player, String $setting) {
         $data = self::$playerArray[$player->getName()];
 
-        echo(SQLite3::escapeString($setting));
-
         if($data['type'] == self::CREATE) {
             if(!$data['url']) {
                 $data['url'] = true;
